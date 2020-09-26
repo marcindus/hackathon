@@ -9,13 +9,17 @@ Game::Game() : window_(sf::VideoMode(windowWidth, windowHeight), "HackathonArkan
     background_ = std::make_shared<Background>();
     paddle_ = std::make_shared<Paddle>();
     ball_ = std::make_shared<Ball>();
+
+    player_ = std::make_shared<Player>(playerLives, playerPoints);
 }
 
 void Game::run() {
     while (window_.isOpen()) {
         processWindowEvents();
+
         update();
         render();
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
             break;
         }
@@ -31,6 +35,7 @@ void Game::render() {
     for (const auto& obj : drawObjects_) {
         window_.draw(*obj);
     }
+
     window_.display();
 }
 
@@ -70,10 +75,10 @@ void Game::init() {
                                                      ((row + 1) * (blockHeight + blocksSpacing)) + spaceFromTop));
         }
     }
-  
     drawObjects_.push_back(background_);
     addDrawObject(paddle_);
     addDrawObject(ball_);
+    addDrawObject(player_);
     for (auto& brick : bricks) {
         addDrawObject(brick);
     }
