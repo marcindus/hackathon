@@ -11,10 +11,10 @@ public:
     Player(int lives, int points);
     void addPoints() { points_++; }
     void removeLives() { lives_--; }
-    //    sf::Text printText();
 
 private:
     int lives_;
     int points_;
     sf::Text text_;
+    sf::Font font_;
 };

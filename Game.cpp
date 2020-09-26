@@ -9,7 +9,6 @@ Game::Game() : window_(sf::VideoMode(windowWidth, windowHeight), "HackathonArkan
     background_ = std::make_shared<Background>();
     paddle_ = std::make_shared<Paddle>();
     ball_ = std::make_shared<Ball>();
-
     player_ = std::make_shared<Player>(playerLives, playerPoints);
 }
 
@@ -82,6 +81,7 @@ void Game::init() {
     for (auto& brick : bricks) {
         addDrawObject(brick);
     }
+    addDrawObject(player_);
 }
 
 void Game::testCollision(std::shared_ptr<Ball>& ballPtr, std::shared_ptr<Paddle>& paddlePtr) {
